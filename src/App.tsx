@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import firebase from "firebase/app";
+import "firebase/auth";
+import {
+  FirebaseAuthProvider,
+  FirebaseAuthConsumer,
+  IfFirebaseAuthed,
+  IfFirebaseAuthedAnd
+} from "@react-firebase/auth";
+import { config } from "./config";
+import { useRoutes } from "hookrouter";
+import routes from "./router";
+import Header from "./components/header";
+import "./App.css";
 
 const App: React.FC = () => {
+  const routesResult = useRoutes(routes);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FirebaseAuthProvider {...config} firebase={firebase}>
+      <div className="App">
+        <Header />
+        {routesResult}
+      </div>
+    </FirebaseAuthProvider>
   );
-}
+};
 
 export default App;

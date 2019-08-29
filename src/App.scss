@@ -1,0 +1,29 @@
+.MuiAppBar-root {
+  .MuiToolbar-root {
+    justify-content: flex-end !important;
+    .header-items {
+      display: flex;
+    }
+    .userInfo {
+      margin-right: 20px;
+      align-items: center;
+      display: flex;
+      .MuiAvatar-root {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+.modal-container {
+  background-color: white;
+  padding: 25px;
+}
+.dashboard {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1658,15 +1658,7 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/google-maps-react@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@types/google-maps-react/-/google-maps-react-2.0.4.tgz#48027de9fb0bc64440de2f983dce3e14370db344"
-  integrity sha512-8EGr84L6ozODnfjWN9xVUFIxFedBbZinuDe5lBEJ757yh/lZqoKkqxrYLqvrLksDRVVwQYwWdFvfEASujmk36A==
-  dependencies:
-    "@types/googlemaps" "*"
-    "@types/react" "*"
-
-"@types/googlemaps@*", "@types/googlemaps@^3.39.3":
+"@types/googlemaps@^3.39.3":
   version "3.39.3"
   resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.39.3.tgz#8664e424f335802c8aa46a94676666b0a0f31d97"
   integrity sha512-L8O9HAVFZj0TuiS8h5ORthiMsrrhjxTC8XUusp5k47oXCst4VTm+qWKvrAvmYMybZVokbp4Udco1mNwJrTNZPQ==
@@ -1678,14 +1670,6 @@
   dependencies:
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
-
-"@types/hookrouter@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@types/hookrouter/-/hookrouter-2.2.1.tgz#0c69e671957b48ade9e042612faf3fc833a3fd59"
-  integrity sha512-C4Ae6yf8vE4TEKZa0EpP2o85UMVHKsZeJwT0oWiQ1QkNBbkQ8bk5A+qWS25Uect9r1Uivz/dnSg6v4WwzFjgrg==
-  dependencies:
-    "@types/react" "*"
-    csstype "^2.2.0"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
@@ -1767,14 +1751,6 @@
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.5.tgz#5de610b04a35d07ffd8f44edad93a71032d9aaa7"
   integrity sha512-BX6RQ8s9D+2/gDhxrj8OW+YD4R+8hj7FEM/OJHGNR0KipE1h1mSsf39YeyC81qafkq+N3rU3h3RFbLSwE5VqUg==
   dependencies:
-    "@types/react" "*"
-
-"@types/react-places-autocomplete@^7.2.6":
-  version "7.2.6"
-  resolved "https://registry.yarnpkg.com/@types/react-places-autocomplete/-/react-places-autocomplete-7.2.6.tgz#2e24c1de8ad1088bd34b7825c0bfd255566855db"
-  integrity sha512-5cjtUHZ6ys4Jfqo3jWXeU3SGeloBNOpRy7Zj6ZOjhnveSBJmCQ8q3nhadUw3uhd8sScssxYsBkwojBXlN3vFww==
-  dependencies:
-    "@types/googlemaps" "*"
     "@types/react" "*"
 
 "@types/react-redux@^7.1.7":
@@ -5302,11 +5278,6 @@ google-maps-infobox@^2.0.0:
   resolved "https://registry.yarnpkg.com/google-maps-infobox/-/google-maps-infobox-2.0.0.tgz#1ea6de93c0cdf4138c2d586331835c83dcc59dc2"
   integrity sha512-hTuWmWZZSOxf5D/z7l3/hTF1grgRvLG53BEKMdjiKOG+FcK/kH7vqseUeyIU9Zj2ZIqKTOaro0nknxpAuRq4Vw==
 
-google-maps-react@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/google-maps-react/-/google-maps-react-2.0.2.tgz#e03fbba032fe570fb38744bf9cd10b946c591cae"
-  integrity sha512-6cYauGwt22haDUrWxKQ6yoNOqjiuxHo8YYcmb+aBvNICokdXmZOUB6Ah4vD5VexMVlrwP2PFqA/D8sHpEB52KA==
-
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.2:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
@@ -5471,11 +5442,6 @@ hoist-non-react-statics@^3.2.1, hoist-non-react-statics@^3.3.0, hoist-non-react-
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   dependencies:
     react-is "^16.7.0"
-
-hookrouter@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/hookrouter/-/hookrouter-1.2.3.tgz#a65599a1be376b51734caf7c4f7f8aba59bb2c77"
-  integrity sha512-n0mqEBGgXIxYRNMHlwCzoyTOk0OB5Es3jwUyA3+2l5nte/52n0CMMj1bmoCabC8K43YTUEr0zzexTBfo//tq2Q==
 
 hosted-git-info@^2.1.4:
   version "2.8.5"
@@ -7113,11 +7079,6 @@ lodash.clone@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clone/-/lodash.clone-4.5.0.tgz#195870450f5a13192478df4bc3d23d2dea1907b6"
   integrity sha1-GVhwRQ9aExkkeN9Lw9I9LeoZB7Y=
-
-lodash.debounce@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
-  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash.get@^4.4.2:
   version "4.4.2"
@@ -9509,23 +9470,10 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-js-google-maps@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/react-js-google-maps/-/react-js-google-maps-1.5.2.tgz#540c305150df1fec6def8722462bc3542f7902fd"
-  integrity sha1-VAwwUVDfH+xt74ciRivDVC95Av0=
-
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
-react-places-autocomplete@^7.2.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-7.2.1.tgz#ecdfdbb530ba19fedddd967a646642c2efd225cf"
-  integrity sha512-X1SRv3zJjEZ9dnfy/vlSFi8dpUZc/vW4CF7GhN46AVATNMmB1y1EwhX2aiqKVWXO1888p9l7FMJLgySPRBDMCQ==
-  dependencies:
-    lodash.debounce "^4.0.8"
-    prop-types "^15.5.8"
 
 react-redux@^7.2.0:
   version "7.2.0"
@@ -9625,11 +9573,6 @@ react-transition-group@^4.3.0:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
-
-react-with-firebase-auth@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-with-firebase-auth/-/react-with-firebase-auth-1.3.0.tgz#585acbc742ab100e8cfa60dcb486fa55161e7e68"
-  integrity sha512-RBiiFy8543qarmBCVBgSARYZ0fwtI73KLa2o05wHJgEnPcFNzAQd7SFUczWnvAJdBr8AiqywvrTp8e+kE5br3g==
 
 react@^16.12.0:
   version "16.12.0"
@@ -9754,11 +9697,6 @@ recursive-readdir@2.2.2:
   integrity sha512-nRCcW9Sj7NuZwa2XvH9co8NPeXUBhZP7CRKJtU+cS6PW9FpCIFoI5ib0NT1ZrbNuPoRy0ylyCaUL8Gih4LSyFg==
   dependencies:
     minimatch "3.0.4"
-
-redux-devtools-extension@^2.13.8:
-  version "2.13.8"
-  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
-  integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
 
 redux-form@^8.3.0:
   version "8.3.0"

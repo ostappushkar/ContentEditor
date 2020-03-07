@@ -73,8 +73,7 @@ class MapGoogle extends React.Component<IMapProps, IMapState> {
 }
 export default compose(
   withProps({
-    googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?v=3.exp&language=us&key=AIzaSyApt1WCHZNPPDLuQf00KEkFETOhO3BpnCE&libraries=places",
+    googleMapURL: process.env.REACT_APP_GOOGLE_API_URL,
     loadingElement: (
       <div className="loadingElement" style={{ height: `100%` }} />
     ),

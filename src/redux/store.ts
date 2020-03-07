@@ -9,7 +9,6 @@ const actionTypes = {
   SET_EDITING: "setEditing",
   SET_VALUES: "setValues"
 };
-
 const initialState = {
   isLogged: false,
   currentUser: {},
@@ -18,7 +17,20 @@ const initialState = {
   isEditing: false,
   appItem: {}
 };
-
+const formReducer = reduxFormReducer.plugin({
+  addAppForm: (state: any, action: any) => {
+    switch (action.type) {
+      case actionTypes.SET_VALUES:
+        return {
+          ...state,
+          values: action.payload.values,
+          initial: action.payload.initial
+        };
+      default:
+        return state;
+    }
+  }
+});
 const mainReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.GET_USER:
@@ -70,20 +82,7 @@ const setValues = (values: any, initial: any) => {
   };
 };
 const reducer = combineReducers({
-  form: reduxFormReducer.plugin({
-    addAppForm: (state: any, action: any) => {
-      switch (action.type) {
-        case actionTypes.SET_VALUES:
-          return {
-            ...state,
-            values: action.payload.values,
-            initial: action.payload.initial
-          };
-        default:
-          return state;
-      }
-    }
-  }),
+  form: formReducer,
   main: mainReducer
 });
 export const mapsDispatchToProps = {

@@ -17,6 +17,7 @@ export interface IProps {
   apps: any;
   isEditing: any;
   setEditing: any;
+  setValues: any;
 }
 class App extends React.Component<{}> {
   render() {

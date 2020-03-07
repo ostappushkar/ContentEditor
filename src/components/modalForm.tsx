@@ -8,18 +8,16 @@ import Welcome from "./FormSteps/Welcome";
 import Branding from "./FormSteps/Branding";
 import Info from "./FormSteps/Info";
 import Features from "./FormSteps/Features";
-import { InjectedFormProps } from "redux-form";
 import Preview from "./FormSteps/Preview";
 import CloseIcon from "@material-ui/icons/Close";
 import { connect } from "react-redux";
 import { mapsStateToProps, mapsDispatchToProps } from "../redux/store";
-import { IProps } from "../App";
 interface IModalState {
   activeStep: string;
 }
 
 class ModalForm extends React.Component<any, IModalState> {
-  constructor(props: IProps) {
+  constructor(props: any) {
     super(props);
     this.state = {
       activeStep: "Welcome"

@@ -8,14 +8,9 @@ import ModalForm from "./modalForm";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
 import { mapsStateToProps, mapsDispatchToProps } from "../redux/store";
-import { IProps } from "../App";
 import { databaseRef } from "../config";
 
-class Dashboard extends React.Component<any, {}> {
-  componentDidMount() {
-    if (this.props.isLogged) {
-    }
-  }
+class Dashboard extends React.Component<any> {
   editApp = (appItem: any) => {
     this.props.setEditing(true, appItem);
     this.props.toggleModal(true);

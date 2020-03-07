@@ -1,5 +1,5 @@
 import React from "react";
-import { InjectedFormProps, reduxForm, formValueSelector } from "redux-form";
+import { reduxForm, formValueSelector } from "redux-form";
 import { Typography, Button, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import Table from "@material-ui/core/Table";
@@ -11,16 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import { databaseRef } from "../../config";
 import { mapsDispatchToProps } from "../../redux/store";
 import Alert from "react-s-alert";
-import { IProps } from "../../App";
-interface IPreviewProps {
-  appName: string;
-  appColor: string;
-  appImage: string;
-  appDescription: string;
-  appLocation: any;
-  appCategories: boolean;
-  appGPS: boolean;
-}
+
 class Preview extends React.Component<any> {
   handleSubmit = () => {
     let prevData = this.props.appItem;
@@ -106,7 +97,11 @@ class Preview extends React.Component<any> {
                       App image
                     </TableCell>
                     <TableCell align="right">
-                      <img style={{ maxHeight: "50px" }} src={appImage}></img>
+                      <img
+                        alt="Preview app"
+                        style={{ maxHeight: "50px" }}
+                        src={appImage}
+                      ></img>
                     </TableCell>
                   </TableRow>
                   <TableRow>

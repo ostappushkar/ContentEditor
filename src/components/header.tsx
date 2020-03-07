@@ -14,7 +14,7 @@ import { mapsDispatchToProps, mapsStateToProps } from "../redux/store";
 interface IHeaderState {
   anchorEl: any;
 }
-class Header extends React.Component<any, IHeaderState> {
+class Header extends React.Component<IProps, IHeaderState> {
   constructor(props: any) {
     super(props);
     this.state = {

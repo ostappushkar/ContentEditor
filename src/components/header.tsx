@@ -1,84 +1,111 @@
 import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { IfFirebaseAuthed, IfFirebaseUnAuthed } from "@react-firebase/auth";
-import firebase from "firebase/app";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import * as firebase from "firebase/app";
+import { IProps } from "../App";
 import { Avatar } from "@material-ui/core";
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1
-    },
-    menuButton: {
-      marginRight: theme.spacing(2)
-    },
-    title: {
-      flexGrow: 1
-    }
-  })
-);
+import { authRef, appsRef } from "../config";
+import { connect } from "react-redux";
+import { mapsDispatchToProps, mapsStateToProps } from "../redux/store";
 
-const Header: React.FC = () => {
-  const classes = useStyles();
-  const [userName, setName] = React.useState("");
-  const [userPhoto, setPhoto] = React.useState("");
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      var userData = JSON.stringify(user);
-      setName(JSON.parse(userData).displayName);
-      setPhoto(JSON.parse(userData).photoURL);
+interface IHeaderState {
+  anchorEl: any;
+}
+class Header extends React.Component<any, IHeaderState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      anchorEl: null
+    };
+  }
+  handleLogout = () => {
+    authRef.signOut().then(() => {
+      localStorage.clear();
+      this.closeAnchorEl();
+      console.log("Logged out...");
+    });
+  };
+  monitorAuth = () => {
+    return authRef.onAuthStateChanged((user: any) => {
+      if (user) {
+        appsRef.child(user.uid).on("value", (snapshot: any) => {
+          let appsSnaphot = snapshot.val();
+          let appsArr = [];
+          for (let item in appsSnaphot) {
+            appsArr.push({
+              id: item,
+              appName: appsSnaphot[item].appName,
+              appColor: appsSnaphot[item].appColor,
+              appImage: appsSnaphot[item].appImage,
+              appDescription: appsSnaphot[item].appDescription,
+              appLocation: appsSnaphot[item].appLocation,
+              appCategories: appsSnaphot[item].appCategories,
+              appGPS: appsSnaphot[item].appGPS
+            });
+          }
+          this.props.getUser(true, user, appsArr);
+        });
+      } else {
+        this.props.getUser(false, null, []);
+      }
+    });
+  };
+  handleLogin = () => {
+    authRef.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+      authRef.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    });
+  };
+  componentDidMount() {
+    this.monitorAuth();
+  }
+  closeAnchorEl = () => {
+    this.setState({ anchorEl: null });
+  };
+  setAnchorEl = (event: any) => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+  render() {
+    if (this.props.isLogged) {
+      return (
+        <AppBar color="primary" position="static">
+          <Toolbar>
+            <Button
+              className="avatarBtn"
+              aria-controls="logout-menu"
+              aria-haspopup="true"
+              onClick={this.setAnchorEl}
+            >
+              <Avatar src={this.props.currentUser.photoURL} />
+            </Button>
+
+            <Menu
+              id="logout-menu"
+              anchorEl={this.state.anchorEl}
+              keepMounted
+              open={Boolean(this.state.anchorEl)}
+              onClose={this.closeAnchorEl}
+            >
+              <MenuItem>{this.props.currentUser.displayName}</MenuItem>
+              <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+            </Menu>
+          </Toolbar>
+        </AppBar>
+      );
     } else {
-      setName("");
-      setPhoto("");
+      return (
+        <AppBar color="primary" position="static">
+          <Toolbar>
+            <Button onClick={this.handleLogin} color="inherit">
+              Login
+            </Button>
+          </Toolbar>
+        </AppBar>
+      );
     }
-  });
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IfFirebaseAuthed>
-            {() => {
-              return (
-                <div className="header-items">
-                  <div className="userInfo">
-                    <Typography variant="button">{userName}</Typography>
-                    <Avatar src={userPhoto}></Avatar>
-                  </div>
-                  <Button
-                    onClick={() => {
-                      firebase.auth().signOut();
-                    }}
-                    color="inherit"
-                  >
-                    Log out
-                  </Button>
-                </div>
-              );
-            }}
-          </IfFirebaseAuthed>
-          <IfFirebaseUnAuthed>
-            {() => {
-              return (
-                <div>
-                  <Button
-                    onClick={() => {
-                      var provider = new firebase.auth.GoogleAuthProvider();
-                      firebase.auth().signInWithPopup(provider);
-                    }}
-                    color="inherit"
-                  >
-                    Login
-                  </Button>
-                </div>
-              );
-            }}
-          </IfFirebaseUnAuthed>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-};
-export default Header;
+  }
+}
+
+export default connect(mapsStateToProps, mapsDispatchToProps)(Header);

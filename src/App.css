@@ -4,39 +4,29 @@
           justify-content: flex-end !important;
 }
 
-.MuiAppBar-root .MuiToolbar-root .header-items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.MuiAppBar-root .MuiToolbar-root .avatarBtn {
+  padding: 0;
+  min-width: auto;
+  border-radius: 50%;
 }
 
-.MuiAppBar-root .MuiToolbar-root .userInfo {
-  margin-right: 20px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.chrome-picker {
+  width: 100% !important;
 }
 
-.MuiAppBar-root .MuiToolbar-root .userInfo .MuiAvatar-root {
-  margin-left: 10px;
-}
-
-.modal-container {
-  background-color: white;
-  padding: 25px;
+.chrome-picker > div:first-child {
+  padding-bottom: 33% !important;
 }
 
 .dashboard {
   padding-top: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .dashboard .dashboard-header {
@@ -46,5 +36,101 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.modal-container {
+  outline-color: transparent;
+}
+
+.modal-container .modal-paper {
+  position: relative;
+  margin: auto;
+  margin-top: 80px;
+  padding: 40px;
+}
+
+.modal-container .modal-paper .stepper-instructions {
+  margin: 8px 0;
+}
+
+div[tabindex="-1"] {
+  outline: transparent;
+}
+
+.pac-container {
+  z-index: 1234567 !important;
+}
+
+[class^="DropzoneArea-dropZone-"] {
+  border-radius: 2px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px, rgba(0, 0, 0, 0.3) 0px 4px 8px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px, rgba(0, 0, 0, 0.3) 0px 4px 8px;
+  -webkit-box-sizing: initial;
+          box-sizing: initial;
+  border: none !important;
+  padding: 17px;
+  min-height: 233px !important;
+  margin-bottom: 20px;
+}
+
+.mapContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.mapElement {
+  height: 69% !important;
+}
+
+.placesSearchBox {
+  width: 100%;
+  margin-bottom: 20px !important;
+}
+
+.thumbnail,
+.thumbnail-app {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.thumbnail img,
+.thumbnail-app img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: auto;
+  width: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.thumbnail-app {
+  height: 200px;
+  margin-bottom: 0;
+}
+
+tr th {
+  font-weight: 500 !important;
+}
+
+.MuiTableCell-root {
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
+.s-alert-box {
+  z-index: 12345 !important;
 }
 /*# sourceMappingURL=App.css.map */

@@ -1,28 +1,35 @@
 import React from "react";
-import firebase from "firebase/app";
-import "firebase/auth";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
-} from "@react-firebase/auth";
-import { config } from "./config";
-import { useRoutes } from "hookrouter";
-import routes from "./router";
 import Header from "./components/header";
 import "./App.css";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Alert from "react-s-alert";
+import "react-s-alert/dist/s-alert-default.css";
+import "react-s-alert/dist/s-alert-css-effects/slide.css";
+import Dashboard from "./components/dashboard";
 
-const App: React.FC = () => {
-  const routesResult = useRoutes(routes);
-  return (
-    <FirebaseAuthProvider {...config} firebase={firebase}>
-      <div className="App">
-        <Header />
-        {routesResult}
-      </div>
-    </FirebaseAuthProvider>
-  );
-};
+export interface IProps {
+  isLogged: boolean;
+  currentUser: any;
+  getUser: any;
+  modalOpen: boolean;
+  toggleModal: any;
+  apps: any;
+  isEditing: any;
+  setEditing: any;
+}
+class App extends React.Component<{}> {
+  render() {
+    return (
+      <Provider store={store}>
+        <div className="App">
+          <Header />
+          <Dashboard />
+          <Alert stack={{ limit: 3 }} />
+        </div>
+      </Provider>
+    );
+  }
+}
 
 export default App;

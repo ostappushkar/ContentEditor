@@ -1,9 +1,15 @@
+import * as firebase from "firebase";
+import "firebase/auth";
 export const config = {
-  apiKey: "AIzaSyBbrATX5GqZw4rmRBjMdPS88m5vUKqsDyI",
-  authDomain: "contenteditor-pushkar.firebaseapp.com",
-  databaseURL: "https://contenteditor-pushkar.firebaseio.com",
-  projectId: "contenteditor-pushkar",
-  storageBucket: "",
-  messagingSenderId: "1020211859953",
-  appId: "1:1020211859953:web:b2d07988f59c7789"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACR_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_ID
 };
+firebase.initializeApp(config);
+export const databaseRef = firebase.database().ref();
+export const authRef = firebase.auth();
+export const appsRef = databaseRef.child("apps");

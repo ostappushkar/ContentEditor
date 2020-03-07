@@ -1,29 +1,97 @@
 .MuiAppBar-root {
   .MuiToolbar-root {
     justify-content: flex-end !important;
-    .header-items {
-      display: flex;
-    }
-    .userInfo {
-      margin-right: 20px;
-      align-items: center;
-      display: flex;
-      .MuiAvatar-root {
-        margin-left: 10px;
-      }
+    .avatarBtn {
+      padding: 0;
+      min-width: auto;
+      border-radius: 50%;
     }
   }
 }
-.modal-container {
-  background-color: white;
-  padding: 25px;
+.chrome-picker {
+  width: 100% !important;
+}
+.chrome-picker > div:first-child {
+  padding-bottom: 33% !important;
 }
 .dashboard {
   padding-top: 50px;
-  display: flex;
-  justify-content: center;
+  display: flex !important;
+  flex-direction: column;
   .dashboard-header {
     display: flex;
     justify-content: space-between;
   }
+}
+.modal-container {
+  outline-color: transparent;
+  .modal-paper {
+    position: relative;
+    margin: auto;
+    margin-top: 80px;
+    padding: 40px;
+    .stepper-instructions {
+      margin: 8px 0;
+    }
+  }
+}
+div[tabindex="-1"] {
+  outline: transparent;
+}
+.pac-container {
+  z-index: 1234567 !important ;
+}
+[class^="DropzoneArea-dropZone-"] {
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px, rgba(0, 0, 0, 0.3) 0px 4px 8px;
+  box-sizing: initial;
+  border: none !important;
+  padding: 17px;
+  min-height: 233px !important;
+  margin-bottom: 20px;
+}
+.mapContainer {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+}
+.mapElement {
+  height: 69% !important;
+}
+.placesSearchBox {
+  width: 100%;
+  margin-bottom: 20px !important;
+}
+.thumbnail,
+.thumbnail-app {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: auto;
+    width: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+.thumbnail-app {
+  height: 200px;
+  margin-bottom: 0;
+}
+tr {
+  th {
+    font-weight: 500 !important;
+  }
+}
+.MuiTableCell-root {
+  align-items: center !important;
+}
+.s-alert-box {
+  z-index: 12345 !important;
 }

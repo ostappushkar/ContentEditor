@@ -4,18 +4,17 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import * as firebase from "firebase/app";
 import { IProps } from "../App";
 import { Avatar } from "@material-ui/core";
-import { authRef, appsRef } from "../config";
+import { authRef, appsRef, authProvider, persistance } from "../config";
 import { connect } from "react-redux";
 import { mapsDispatchToProps, mapsStateToProps } from "../redux/store";
 
 interface IHeaderState {
-  anchorEl: any;
+  anchorEl: HTMLButtonElement;
 }
 class Header extends React.Component<IProps, IHeaderState> {
-  constructor(props: any) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       anchorEl: null
@@ -29,33 +28,35 @@ class Header extends React.Component<IProps, IHeaderState> {
     });
   };
   monitorAuth = () => {
-    return authRef.onAuthStateChanged((user: any) => {
+    return authRef.onAuthStateChanged((user: firebase.User) => {
       if (user) {
-        appsRef.child(user.uid).on("value", (snapshot: any) => {
-          let appsSnaphot = snapshot.val();
-          let appsArr = [];
-          for (let item in appsSnaphot) {
-            appsArr.push({
-              id: item,
-              appName: appsSnaphot[item].appName,
-              appColor: appsSnaphot[item].appColor,
-              appImage: appsSnaphot[item].appImage,
-              appDescription: appsSnaphot[item].appDescription,
-              appLocation: appsSnaphot[item].appLocation,
-              appCategories: appsSnaphot[item].appCategories,
-              appGPS: appsSnaphot[item].appGPS
-            });
-          }
-          this.props.getUser(true, user, appsArr);
-        });
+        appsRef
+          .child(user.uid)
+          .on("value", (snapshot: firebase.database.DataSnapshot) => {
+            let appsSnaphot = snapshot.val();
+            let appsArr = [];
+            for (let item in appsSnaphot) {
+              appsArr.push({
+                id: item,
+                appName: appsSnaphot[item].appName,
+                appColor: appsSnaphot[item].appColor,
+                appImage: appsSnaphot[item].appImage,
+                appDescription: appsSnaphot[item].appDescription,
+                appLocation: appsSnaphot[item].appLocation,
+                appCategories: appsSnaphot[item].appCategories,
+                appGPS: appsSnaphot[item].appGPS
+              });
+            }
+            this.props.getUser(true, user, appsArr);
+          });
       } else {
         this.props.getUser(false, null, []);
       }
     });
   };
   handleLogin = () => {
-    authRef.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
-      authRef.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    authRef.setPersistence(persistance).then(() => {
+      authRef.signInWithPopup(authProvider);
     });
   };
   componentDidMount() {
@@ -64,7 +65,7 @@ class Header extends React.Component<IProps, IHeaderState> {
   closeAnchorEl = () => {
     this.setState({ anchorEl: null });
   };
-  setAnchorEl = (event: any) => {
+  setAnchorEl = (event: React.MouseEvent<HTMLButtonElement>) => {
     this.setState({ anchorEl: event.currentTarget });
   };
   render() {

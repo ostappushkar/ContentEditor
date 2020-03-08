@@ -1,5 +1,5 @@
 import React from "react";
-import { reduxForm, formValueSelector } from "redux-form";
+import { reduxForm, formValueSelector, InjectedFormProps } from "redux-form";
 import { Typography, Button, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import Table from "@material-ui/core/Table";
@@ -11,14 +11,17 @@ import Paper from "@material-ui/core/Paper";
 import { databaseRef } from "../../config";
 import { mapsDispatchToProps } from "../../redux/store";
 import Alert from "react-s-alert";
+import { IProps, AppItem } from "../../App";
 
-class Preview extends React.Component<any> {
+class Preview extends React.Component<
+  InjectedFormProps<{}, IProps & AppItem> & IProps & AppItem
+> {
   handleSubmit = () => {
     let prevData = this.props.appItem;
     let appID = this.props.appItem.id;
     let userID = this.props.currentUser.uid;
     delete prevData.id;
-    const newData = {
+    const newData: AppItem = {
       appName: this.props.appName,
       appColor: this.props.appColor,
       appImage: this.props.appImage,
@@ -27,7 +30,8 @@ class Preview extends React.Component<any> {
       appCategories: this.props.appCategories,
       appGPS: this.props.appGPS
     };
-    for (let key in newData) {
+    let key: keyof AppItem;
+    for (key in newData) {
       if (newData[key] === "") {
         Alert.error("All fields required!", {
           position: "bottom-left"
@@ -56,7 +60,7 @@ class Preview extends React.Component<any> {
       });
     } else {
       databaseRef
-        .child(`apps/${this.props.currentUser.uid}`)
+        .child(`apps/${this.props.currentUser["uid"]}`)
         .push(newData, () => {
           Alert.success("App added!", {
             position: "bottom-left"

@@ -9,7 +9,7 @@ interface IWelcomeProps {
   appName: string;
 }
 class Welcome extends React.Component<
-  InjectedFormProps<IWelcomeProps & IProps> & IProps
+  InjectedFormProps<IWelcomeProps> & IProps
 > {
   render() {
     const { handleSubmit, isEditing } = this.props;

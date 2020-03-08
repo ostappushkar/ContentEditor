@@ -10,6 +10,8 @@ export const config = {
   appId: process.env.REACT_APP_ID
 };
 firebase.initializeApp(config);
+export const persistance = firebase.auth.Auth.Persistence.LOCAL;
+export const authProvider = new firebase.auth.GoogleAuthProvider();
 export const databaseRef = firebase.database().ref();
 export const authRef = firebase.auth();
 export const appsRef = databaseRef.child("apps");

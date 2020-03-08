@@ -8,12 +8,13 @@ import {
 import { Typography, Button, Grid } from "@material-ui/core";
 import { ImageUpload, ColorPicker } from "../MUIComponents";
 import { connect } from "react-redux";
-interface IFormProps {
+interface IBrandingProps {
   appColor: string;
   appImage: string;
 }
-interface IProps extends IFormProps {}
-class Branding extends React.Component<InjectedFormProps<IFormProps> & IProps> {
+class Branding extends React.Component<
+  InjectedFormProps<IBrandingProps> & IBrandingProps
+> {
   render() {
     const { handleSubmit, appColor, appImage } = this.props;
     return (
@@ -55,7 +56,7 @@ class Branding extends React.Component<InjectedFormProps<IFormProps> & IProps> {
   }
 }
 var selector = formValueSelector("addAppForm");
-var BrandingForm = reduxForm({
+var BrandingForm = reduxForm<IBrandingProps>({
   form: "addAppForm",
   forceUnregisterOnUnmount: false,
   destroyOnUnmount: false

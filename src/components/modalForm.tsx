@@ -12,17 +12,25 @@ import Preview from "./FormSteps/Preview";
 import CloseIcon from "@material-ui/icons/Close";
 import { connect } from "react-redux";
 import { mapsStateToProps, mapsDispatchToProps } from "../redux/store";
+import { IProps } from "../App";
 interface IModalState {
   activeStep: string;
 }
-
-class ModalForm extends React.Component<any, IModalState> {
-  constructor(props: any) {
+interface StepMap {
+  Welcome: object;
+  Branding: object;
+  Info: object;
+  Features: object;
+  Preview: object;
+}
+class ModalForm extends React.Component<IProps, IModalState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       activeStep: "Welcome"
     };
   }
+
   handleNext = () => {
     const keys = Object.keys(this.stepMap);
     this.setState(prevState => {
@@ -31,7 +39,7 @@ class ModalForm extends React.Component<any, IModalState> {
       };
     });
   };
-  stepMap = {
+  stepMap: StepMap = {
     Welcome: <Welcome onSubmit={this.handleNext} />,
     Branding: <Branding onSubmit={this.handleNext} />,
     Info: <Info onSubmit={this.handleNext} />,
@@ -39,7 +47,9 @@ class ModalForm extends React.Component<any, IModalState> {
     Preview: <Preview />
   };
   render() {
-    const activeStepComponent = this.stepMap[this.state.activeStep];
+    const activeStepComponent = this.stepMap[
+      this.state.activeStep as keyof StepMap
+    ];
     return (
       <Modal open={this.props.modalOpen}>
         <Container className="modal-container" maxWidth="md">

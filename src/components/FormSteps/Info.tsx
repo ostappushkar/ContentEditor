@@ -9,12 +9,12 @@ import { Typography, Button, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { TextArea } from "../MUIComponents";
 import MapGoogle from "../googleMap";
+import { AppLocation } from "../../App";
 interface IInfoProps {
   appDescription: string;
-  appLocation: any;
+  appLocation: AppLocation;
 }
-interface IProps extends IInfoProps {}
-class Info extends React.Component<InjectedFormProps<IInfoProps> & IProps> {
+class Info extends React.Component<InjectedFormProps<IInfoProps> & IInfoProps> {
   render() {
     const { handleSubmit, appLocation } = this.props;
     return (
@@ -56,7 +56,7 @@ class Info extends React.Component<InjectedFormProps<IInfoProps> & IProps> {
   }
 }
 var selector = formValueSelector("addAppForm");
-var InfoForm = reduxForm({
+var InfoForm = reduxForm<IInfoProps>({
   form: "addAppForm",
   forceUnregisterOnUnmount: false,
   destroyOnUnmount: false

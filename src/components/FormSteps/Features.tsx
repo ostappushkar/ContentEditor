@@ -70,7 +70,7 @@ class Features extends React.Component<
     );
   }
 }
-export default reduxForm({
+export default reduxForm<IFeaturesProps>({
   form: "addAppForm",
   forceUnregisterOnUnmount: false,
   destroyOnUnmount: false

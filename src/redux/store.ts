@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { reducer as reduxFormReducer } from "redux-form";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-
+import { AppItem } from "../App";
 const actionTypes = {
   GET_USER: "getUser",
   TOGGLE_MODAL: "toggleModal",
@@ -13,7 +13,7 @@ const initialState = {
   isLogged: false,
   currentUser: {},
   modalOpen: false,
-  apps: [],
+  apps: [] as AppItem[],
   isEditing: false,
   appItem: {}
 };

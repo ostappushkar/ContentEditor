@@ -2,22 +2,22 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 import { DropzoneArea } from "material-ui-dropzone";
 import Switch from "@material-ui/core/Switch";
-import { ChromePicker } from "react-color";
-import axios from "axios";
+import { ChromePicker, ColorResult } from "react-color";
+import axios, { AxiosResponse } from "axios";
 import Alert from "react-s-alert";
 
 export const MUITextField = ({ label, name, input }: any) => (
   <TextField name={name} label={label} {...input} />
 );
-interface IUploaderProps {
+interface IImageUploaderProps {
   input: any;
   label: string;
   name: string;
   image: string;
 }
-export class ImageUpload extends React.Component<IUploaderProps> {
-  public initImage = [];
-  handleChange = (files: any) => {
+export class ImageUpload extends React.Component<IImageUploaderProps> {
+  public initImage: string[] = [];
+  handleChange = (files: File[]) => {
     if (files.length === 1) {
       let formData = new FormData();
       formData.append("image", files[0]);
@@ -31,7 +31,7 @@ export class ImageUpload extends React.Component<IUploaderProps> {
           Authorization: "Client-ID " + apiKey
         },
         data: formData
-      }).then((res: any) => {
+      }).then((res: AxiosResponse) => {
         this.props.input.onChange(res.data.data.link);
         Alert.success("Image added", {
           position: "bottom-left"
@@ -63,14 +63,14 @@ export class ImageUpload extends React.Component<IUploaderProps> {
     );
   }
 }
-interface IPickerProps {
+interface IColorPickerProps {
   input: any;
   label: string;
   name: string;
   color: string;
 }
-export class ColorPicker extends React.Component<IPickerProps> {
-  handleColorChange = (color: any) => {
+export class ColorPicker extends React.Component<IColorPickerProps> {
+  handleColorChange = (color: ColorResult) => {
     this.props.input.onChange(color.hex);
   };
   render() {
@@ -97,10 +97,10 @@ export const TextArea = ({ input, name }: any) => {
     />
   );
 };
-interface ISwitcher {
+interface ISwitcherProps {
   input: any;
 }
-export class Switcher extends React.Component<ISwitcher> {
+export class Switcher extends React.Component<ISwitcherProps> {
   componentDidMount() {
     this.props.input.onChange(this.props.input.checked);
   }

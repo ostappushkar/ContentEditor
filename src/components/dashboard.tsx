@@ -8,7 +8,7 @@ import ModalForm from "./modalForm";
 import { connect } from "react-redux";
 import { toggleModal, setEditing, setValues } from "../redux/actions";
 import Alert from "react-s-alert";
-import { databaseRef } from "../config";
+import { databaseRef } from "../configFirebase";
 import { AppItem } from "../App";
 
 interface IProps {

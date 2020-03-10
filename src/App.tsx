@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./components/header";
-import "./App.css";
+import Dashboard from "./components/dashboard";
+import "./style/style.scss";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Alert from "react-s-alert";
 import "react-s-alert/dist/s-alert-default.css";
 import "react-s-alert/dist/s-alert-css-effects/slide.css";
-import Dashboard from "./components/dashboard";
 
 export interface AppLocation {
   lng: number;

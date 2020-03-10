@@ -9,7 +9,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { databaseRef } from "../../config";
+import { databaseRef } from "../../configFirebase";
 import Alert from "react-s-alert";
 import { AppItem } from "../../App";
 interface IProps {

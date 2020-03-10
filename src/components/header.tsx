@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Avatar } from "@material-ui/core";
-import { authRef, appsRef, authProvider, persistance } from "../config";
+import { authRef, appsRef, authProvider, persistance } from "../configFirebase";
 import { connect } from "react-redux";
 import { getUser } from "../redux/actions";
 interface IProps {

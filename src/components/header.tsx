@@ -4,12 +4,15 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { IProps } from "../App";
 import { Avatar } from "@material-ui/core";
 import { authRef, appsRef, authProvider, persistance } from "../config";
 import { connect } from "react-redux";
-import { mapsDispatchToProps, mapsStateToProps } from "../redux/store";
-
+import { getUser } from "../redux/actions";
+interface IProps {
+  isLogged: boolean;
+  currentUser: firebase.User;
+  getUser: Function;
+}
 interface IHeaderState {
   anchorEl: HTMLButtonElement;
 }
@@ -108,5 +111,13 @@ class Header extends React.Component<IProps, IHeaderState> {
     }
   }
 }
-
+const mapsDispatchToProps = {
+  getUser
+};
+export const mapsStateToProps = (state: any) => {
+  return {
+    isLogged: state.main.isLogged,
+    currentUser: state.main.currentUser
+  };
+};
 export default connect(mapsStateToProps, mapsDispatchToProps)(Header);

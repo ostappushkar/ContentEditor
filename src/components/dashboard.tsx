@@ -6,11 +6,22 @@ import EditSharpIcon from "@material-ui/icons/EditSharp";
 import DeleteSharpIcon from "@material-ui/icons/DeleteSharp";
 import ModalForm from "./modalForm";
 import { connect } from "react-redux";
+import { toggleModal, setEditing, setValues } from "../redux/actions";
 import Alert from "react-s-alert";
-import { mapsStateToProps, mapsDispatchToProps } from "../redux/store";
 import { databaseRef } from "../config";
+import { AppItem } from "../App";
 
-class Dashboard extends React.Component<any> {
+interface IProps {
+  isLogged: boolean;
+  currentUser: firebase.User;
+  modalOpen: boolean;
+  toggleModal: Function;
+  apps: Object[];
+  setEditing: Function;
+  appItem?: AppItem;
+  setValues: Function;
+}
+class Dashboard extends React.Component<IProps> {
   editApp = (appItem: any) => {
     this.props.setEditing(true, appItem);
     this.props.toggleModal(true);
@@ -124,5 +135,18 @@ class Dashboard extends React.Component<any> {
     }
   }
 }
-
+const mapsDispatchToProps = {
+  toggleModal,
+  setEditing,
+  setValues
+};
+const mapsStateToProps = (state: any) => {
+  return {
+    isLogged: state.main.isLogged,
+    currentUser: state.main.currentUser,
+    modalOpen: state.main.modalOpen,
+    apps: state.main.apps,
+    appItem: state.main.appItem
+  };
+};
 export default connect(mapsStateToProps, mapsDispatchToProps)(Dashboard);

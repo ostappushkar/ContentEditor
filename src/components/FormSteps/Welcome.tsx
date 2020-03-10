@@ -2,11 +2,12 @@ import React from "react";
 import { InjectedFormProps, reduxForm, Field } from "redux-form";
 import { Typography, Button } from "@material-ui/core";
 import { MUITextField } from "../MUIComponents";
-import { IProps } from "../../App";
 import { connect } from "react-redux";
-import { mapsStateToProps } from "../../redux/store";
 interface IWelcomeProps {
   appName: string;
+}
+interface IProps {
+  isEditing: boolean;
 }
 class Welcome extends React.Component<
   InjectedFormProps<IWelcomeProps> & IProps
@@ -45,6 +46,11 @@ class Welcome extends React.Component<
     );
   }
 }
+export const mapsStateToProps = (state: any) => {
+  return {
+    isEditing: state.main.isEditing
+  };
+};
 export default connect(mapsStateToProps)(
   reduxForm<IWelcomeProps>({
     form: "addAppForm",

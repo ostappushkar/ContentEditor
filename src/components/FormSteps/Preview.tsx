@@ -2,6 +2,7 @@ import React from "react";
 import { reduxForm, formValueSelector, InjectedFormProps } from "redux-form";
 import { Typography, Button, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
+import { toggleModal, setEditing, setValues } from "../../redux/actions";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,10 +10,16 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { databaseRef } from "../../config";
-import { mapsDispatchToProps } from "../../redux/store";
 import Alert from "react-s-alert";
-import { IProps, AppItem } from "../../App";
-
+import { AppItem } from "../../App";
+interface IProps {
+  currentUser: firebase.User;
+  toggleModal: Function;
+  isEditing: boolean;
+  setEditing: Function;
+  appItem?: AppItem;
+  setValues: Function;
+}
 class Preview extends React.Component<
   InjectedFormProps<{}, IProps & AppItem> & IProps & AppItem
 > {
@@ -197,16 +204,12 @@ class Preview extends React.Component<
     );
   }
 }
-
-var selector = formValueSelector("addAppForm");
-
-var PreviewForm = reduxForm({
-  form: "addAppForm",
-  forceUnregisterOnUnmount: false,
-  destroyOnUnmount: false
-})(Preview);
-
-export default connect((state: any) => {
+const mapsDispatchToProps = {
+  toggleModal,
+  setEditing,
+  setValues
+};
+const mapsStateToProps = (state: any) => {
   const currentUser = state.main.currentUser;
   const isEditing = state.main.isEditing;
   const appItem = state.main.appItem;
@@ -240,4 +243,13 @@ export default connect((state: any) => {
     isEditing,
     appItem
   };
-}, mapsDispatchToProps)(PreviewForm);
+};
+let selector = formValueSelector("addAppForm");
+
+const PreviewForm = reduxForm({
+  form: "addAppForm",
+  forceUnregisterOnUnmount: false,
+  destroyOnUnmount: false
+})(Preview);
+
+export default connect(mapsStateToProps, mapsDispatchToProps)(PreviewForm);

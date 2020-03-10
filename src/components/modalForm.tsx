@@ -11,8 +11,7 @@ import Features from "./FormSteps/Features";
 import Preview from "./FormSteps/Preview";
 import CloseIcon from "@material-ui/icons/Close";
 import { connect } from "react-redux";
-import { mapsStateToProps, mapsDispatchToProps } from "../redux/store";
-import { IProps } from "../App";
+import { toggleModal, setEditing, setValues } from "../redux/actions";
 interface IModalState {
   activeStep: string;
 }
@@ -22,6 +21,13 @@ interface StepMap {
   Info: object;
   Features: object;
   Preview: object;
+}
+interface IProps {
+  modalOpen: boolean;
+  toggleModal: Function;
+  isEditing: boolean;
+  setEditing: Function;
+  setValues: Function;
 }
 class ModalForm extends React.Component<IProps, IModalState> {
   constructor(props: IProps) {
@@ -97,4 +103,15 @@ class ModalForm extends React.Component<IProps, IModalState> {
     );
   }
 }
+const mapsDispatchToProps = {
+  toggleModal,
+  setEditing,
+  setValues
+};
+const mapsStateToProps = (state: any) => {
+  return {
+    modalOpen: state.main.modalOpen,
+    isEditing: state.main.isEditing
+  };
+};
 export default connect(mapsStateToProps, mapsDispatchToProps)(ModalForm);
